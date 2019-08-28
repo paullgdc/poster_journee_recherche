@@ -36,17 +36,20 @@
 \usepackage[font=large,labelfont=bf]{caption} % Required for specifying captions to tables and figures
 \usepackage{amsfonts, amsmath, amsthm, amssymb} 
 \usepackage{wrapfig} % Allows wrapping text around tables and figures
-\usepackage{tikz}
-% \usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
-% decorations.pathreplacing,decorations.pathmorphing,shapes,%
-% matrix,shapes.symbols,plotmarks,decorations.markings,shadows}
 \usepackage[most]{tcolorbox}
-\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+% \renewcommand\familydefault{cmss} 
 
 \newcommand{\captioncolor}{\color{black}}
 \newcommand{\equtext}[1]{\mbox{\small{#1}}}
+% \makeatletter %only needed in preamble
+% \renewcommand\veryHuge{\@setfontsize\veryHuge{1000pt}{1000}}
+% \renewcommand\Huge{\@setfontsize\Huge{500pt}{500}}
+% \makeatother
 \begin{document}
 \large
+\sffamily 
 %----------------------------------------------------------------------------------------
 %	POSTER HEADER 
 %----------------------------------------------------------------------------------------
@@ -81,7 +84,7 @@
 
 \begin{tcolorbox}[colback=blue!5!lime,colframe=green!75!black,title={\section*{Contexte}}]
 \textbf{\Large{Objectif: Classifier des profils micro-Doppler d'objets volants}}\\
-Des profils micro-Doppler de drones et d'oiseaux ont été collectés par l'ONERA.
+(profils micro-Doppler de drones et d'oiseaux ONERA)
 \begin{center}
     \includegraphics[width=0.19\textwidth]{./Phantom_version1.jpg}
     \captionof{figure}{Exemple de drone mesuré} 
@@ -142,8 +145,8 @@ Amélioration du \textbf{Générateur} par rétropropagation de l'erreur du \tex
 %	Différents types de GAN
 %----------------------------------------------------------------------------------------
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Différents types de GAN}}]
-\textbf{Différentes architectures de réseau}\\
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Types de GANs}}]
+\textbf{Architectures de réseau}\\
 D discriminateur, G générateur, c labels, x données réelles, z vecteur de bruit
 \begin{center}
 \begin{minipage}{0.24\textwidth}
@@ -156,7 +159,7 @@ D discriminateur, G générateur, c labels, x données réelles, z vecteur de br
     \includegraphics[width=1.0\textwidth]{./INFOGAN_structure.png}
 \end{minipage}
 \end{center}
-\textbf{Différentes fonctions d'erreurs du Discriminateur}
+\textbf{Fonctions d'erreurs du Discriminateur}
 \begin{itemize}
     \item Entropie croisée
     \item Distance de Wasserstein
@@ -196,18 +199,33 @@ $FID = ||\mu_{\equtext{real}} - \mu_{\equtext{generated}}||^2 + Tr(\Sigma_{\equt
 %----------------------------------------------------------------------------------------
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title,title={\section*{Résultats}}]
-% \begin{minipage}{0.5\textwidth}
-    \begin{center}
-        \includegraphics[width=\textwidth]{./profils_reels.png}
-    \end{center}
-    \captionof{figure}{Profils réels}
-% \end{minipage}
-% \begin{minipage}{0.5\textwidth}
-    \begin{center}
-        \includegraphics[width=\textwidth]{./profils_generes.png}
-    \end{center}
-    \captionof{figure}{Profils générés}
-% \end{minipage}
+\newcommand{\centeredmark}[1]{\centerline{\tikzmark{#1}}}
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{./iter=20000.png}
+    \centeredmark{a}
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{./iter=40000.png}
+    \centeredmark{b}
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{./iter=60000.png}
+    \centeredmark{c}
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{./iter=80000.png}
+    \centeredmark{d}
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=1.0\textwidth]{./iter=100000.png}
+    \centeredmark{e}
+\end{minipage}
+\begin{tikzpicture}[remember picture]
+    \node (image) at (0,0) {\includegraphics[width=1.0\textwidth]{./fid_per_iterations.png}};
+    % \draw[red,ultra thick,rounded corners] (-5,-5) rectangle (5,5);
+    % \draw[help lines,xstep=1.0,ystep=1.0] (-15,-15) grid (15,15);
+    \foreach \i/\j in {(-9.9,4)/a, (-3, -3)/b, (3.5, -3)/c, (10, -7)/d, (16.5, 8)/e} \draw [red,->, line width=5pt] ({pic cs:\j}) -- \i;
+\end{tikzpicture}
 \end{tcolorbox}
 \bigskip
 
@@ -220,9 +238,10 @@ Les signaux générés ne sont pas de très bonne qualité.\\
 \textbf{Améliorations}
 \begin{itemize}
     \item \textit{Parameters tunning}
-    \item GAN \textit{image-to-image}, tel que \textbf{CycleGAN}, à partir de profils micro-Doppler simulés. Permettrait de générer des profils de drones non présent dans la base de donnée.
-    \item GAN plus avancés (par exemple \textbf{StyleGAN})
+    \item GANs \textit{image-to-image}, tel que \textbf{CycleGAN}, à partir de profils micro-Doppler simulés. Permettrait de générer des profils de drones non présent dans la base de donnée.
+    \item GANs plus avancés (par exemple \textbf{StyleGAN})
 \end{itemize}
 \end{tcolorbox}
+
 \end{multicols}
 \end{document}
