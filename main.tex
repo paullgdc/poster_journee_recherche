@@ -120,7 +120,7 @@
     \item Profils hautement corrélés. \textbf{Diversité}
 \end{itemize}
 \textbf{\Large{Solution proposée}}\\
-\textit{\Large{Data augmentation}} par génération de profils micro-Doppler artificiels par réseaux de neurone (\textbf{GAN}).
+\textit{\Large{Data augmentation}} par génération de profils micro-Doppler artificiels par réseaux de neurones (\textbf{GAN}).
 \end{tcolorbox}
 \bigskip
 
@@ -134,7 +134,8 @@ GAN : un réseau de neurones pour générer des données.
     \includegraphics[width=0.7\textwidth]{./gan_schema}
     \captionof{figure}{\captioncolor Schéma d'un GAN basique} 
 \end{center}
-\subtitle{Fonctionnement}//
+\subtitle{Fonctionnement}
+
 Recherche d'un équilibre entre le \textbf{Générateur} et le \textbf{Discriminateur}.
 \begin{itemize}
     \item \textbf{Générateur} essaye de tromper le \textbf{Discriminateur}
@@ -187,7 +188,7 @@ D discriminateur, G générateur, c labels, x données réelles, z vecteur de br
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{FID (Fréchet Inception Distance)}}]
 \textbf{Evaluation d'une distance entre deux ensembles d'images}\\
-\textbf{InceptionV3}, réseau de neurones à convolution entraîné sut ImageNet est utilisé pour extraire des motifs de l'image.\\
+\textbf{InceptionV3}, réseau de neurones à convolution entraîné sur \textit{ImageNet} est utilisé pour extraire des motifs de l'image.\\
 Comparaison des statistiques de sorti l'avant-dernière couche du réseau.%
 \Large{
 \[X_{\equtext{real}}=\mathcal{N}(\mu_{\equtext{real}}, \Sigma_{\equtext{real}}), X_{\equtext{generated}}=\mathcal{N}(\mu_{\equtext{generated}}, \Sigma_{\equtext{generated}})\]
