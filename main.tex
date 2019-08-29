@@ -189,8 +189,10 @@ D discriminateur, G générateur, c labels, x données réelles, z vecteur de br
 \textbf{Evaluation d'une distance entre deux ensembles d'images}\\
 \textbf{InceptionV3}, réseau de neurones à convolution entraîné sut ImageNet est utilisé pour extraire des motifs de l'image.\\
 Comparaison des statistiques de sorti l'avant-dernière couche du réseau.%
+\Large{
 \[X_{\equtext{real}}=\mathcal{N}(\mu_{\equtext{real}}, \Sigma_{\equtext{real}}), X_{\equtext{generated}}=\mathcal{N}(\mu_{\equtext{generated}}, \Sigma_{\equtext{generated}})\]
 \[FID = ||\mu_{\equtext{real}} - \mu_{\equtext{generated}}||^2 + Tr(\Sigma_{\equtext{real}} + \Sigma_{\equtext{generated}}  - (\Sigma_{\equtext{real}} \Sigma_{\equtext{generated}})^{1/2})\]
+}
 \end{tcolorbox}
 \bigskip
 
