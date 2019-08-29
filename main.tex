@@ -47,6 +47,9 @@
 % \renewcommand\veryHuge{\@setfontsize\veryHuge{1000pt}{1000}}
 % \renewcommand\Huge{\@setfontsize\Huge{500pt}{500}}
 % \makeatother
+\newcommand{\subtitle}[1]{\Large{\textbf{#1}}}
+\setlength{\parskip}{0em}
+
 \begin{document}
 \large
 \sffamily 
@@ -60,9 +63,9 @@
 % The widths of these boxes can be easily edited to accommodate your content as you see fit
 
 \begin{minipage}[b]{0.75\linewidth}
-\veryHuge \color{NavyBlue} \textbf{Stage de Recherche en Informatique (Sup\'e{}lec 2A)} \color{Black}\\
-\Huge\textit{ Génération de signaux micro-Doppler par réseaux de neurone }\\[18mm]
-\huge \textbf{Paul LE GRAND DES CLOIZEAUX}\\[0.5cm] 
+\veryHuge \color{NavyBlue} \textbf{Stage Recherche en Informatique (CS 2A)} \color{Black}\\
+\Huge\textit{ Génération de signaux micro-Doppler par réseaux de neurones }\\[18mm]
+\huge \textbf{Paul LE GRAND DES CLOIZEAUX}\\[0.0cm] 
 \huge LRI, CentraleSupélec, Université Paris-Saclay
 \end{minipage}
 %
@@ -72,7 +75,7 @@
 \end{flushright}
 \end{minipage}
 
-\vspace{1cm} % A bit of extra whitespace between the header and poster content
+%\vspace{1cm} % A bit of extra whitespace between the header and poster content
 
 %----------------------------------------------------------------------------------------
 
@@ -84,9 +87,9 @@
 
 \begin{tcolorbox}[colback=blue!5!lime,colframe=green!75!black,title={\section*{Contexte}}]
 \textbf{\Large{Objectif: Classifier des profils micro-Doppler d'objets volants}}\\
-(profils micro-Doppler de drones et d'oiseaux ONERA)
+(profils micro-Doppler de drones et d'oiseaux fournis par l'ONERA)
 \begin{center}
-    \includegraphics[width=0.19\textwidth]{./Phantom_version1.jpg}
+    \includegraphics[width=0.5\textwidth]{./Phantom_version1.jpg}
     \captionof{figure}{Exemple de drone mesuré} 
 \end{center}
 \end{tcolorbox}
@@ -99,9 +102,9 @@
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Profils micro-Doppler}}]
 \textbf{Format: Spectrogramme en temps long}
 \begin{center}
-    \includegraphics[width=0.9\textwidth]{./QD41.png}
+    \includegraphics[width=0.7\textwidth]{./QD41.png}
     \captionof{figure}{\captioncolor Spectrogramme en temps long d'un drone}
-    \includegraphics[width=0.9\textwidth]{./QD41_zoom.png}
+    \includegraphics[width=0.7\textwidth]{./QD41_zoom.png}
     \captionof{figure}{\captioncolor Zoom - décalages de fréquences dus aux rotors}
 \end{center}
 \end{tcolorbox}
@@ -111,13 +114,13 @@
 %	Qu'est ce qu'un GAN?
 %----------------------------------------------------------------------------------------
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Quantité de donnés insuffisantes}}]
-\textbf{Problèmes}
+\subtitle{Problèmes}
 \begin{itemize}
     \item Nombre faible de profils. \textbf{Quantité}
     \item Profils hautement corrélés. \textbf{Diversité}
 \end{itemize}
-\textbf{Solution proposée}\\
-\textit{Data augmentation} par génération de profils micro-Doppler artificiels par réseaux de neurone (\textbf{GAN}).
+\textbf{\Large{Solution proposée}}\\
+\textit{\Large{Data augmentation}} par génération de profils micro-Doppler artificiels par réseaux de neurone (\textbf{GAN}).
 \end{tcolorbox}
 \bigskip
 
@@ -125,13 +128,13 @@
 %	Qu'est ce qu'un GAN?
 %----------------------------------------------------------------------------------------
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Qu'est ce qu'un GAN (Generative Adversarial Network)?}}]
-GAN : un réseau de neurone pour générer des données.
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Qu'est-ce qu'un GAN (Generative Adversarial Network)?}}]
+GAN : un réseau de neurones pour générer des données.
 \begin{center}
     \includegraphics[width=0.7\textwidth]{./gan_schema}
     \captionof{figure}{\captioncolor Schéma d'un GAN basique} 
 \end{center}
-\subsection*{Fonctionnement}
+\subtitle{Fonctionnement}//
 Recherche d'un équilibre entre le \textbf{Générateur} et le \textbf{Discriminateur}.
 \begin{itemize}
     \item \textbf{Générateur} essaye de tromper le \textbf{Discriminateur}
@@ -146,7 +149,7 @@ Amélioration du \textbf{Générateur} par rétropropagation de l'erreur du \tex
 %----------------------------------------------------------------------------------------
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{Types de GANs}}]
-\textbf{Architectures de réseau}\\
+\subtitle{Architectures de réseau}\\
 D discriminateur, G générateur, c labels, x données réelles, z vecteur de bruit
 \begin{center}
 \begin{minipage}{0.24\textwidth}
@@ -159,7 +162,7 @@ D discriminateur, G générateur, c labels, x données réelles, z vecteur de br
     \includegraphics[width=1.0\textwidth]{./INFOGAN_structure.png}
 \end{minipage}
 \end{center}
-\textbf{Fonctions d'erreurs du Discriminateur}
+\subtitle{Fonctions d'erreur du Discriminateur}
 \begin{itemize}
     \item Entropie croisée
     \item Distance de Wasserstein
@@ -171,7 +174,6 @@ D discriminateur, G générateur, c labels, x données réelles, z vecteur de br
 %----------------------------------------------------------------------------------------
 
 \begin{tcolorbox}[colback=blue!5!lime,colframe=green!75!black,title={\section*{Mesurer les performances d'un GAN?}}]
-Comment mesurer la qualité des données générées par un GAN?
 \begin{itemize}
     \item Pas possible d'évaluer le réseau sur une base de test.
     \item Évaluation humaine peu fiable, notamment pour les profils micro-Doppler.
@@ -185,12 +187,10 @@ Comment mesurer la qualité des données générées par un GAN?
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={\section*{FID (Fréchet Inception Distance)}}]
 \textbf{Evaluation d'une distance entre deux ensembles d'images}\\
-\textbf{InceptionV3}, réseau de neurone à convolution entraîné sut ImageNet est utilisé pour extraire des motifs de l'image.\\
-Comparaison des statistiques de sorti l'avant-dernière couche du réseau.
-\begin{center}
-$X_{\equtext{real}}=\mathcal{N}(\mu_{\equtext{real}}, \Sigma_{\equtext{real}}), X_{\equtext{generated}}=\mathcal{N}(\mu_{\equtext{generated}}, \Sigma_{\equtext{generated}})$
-$FID = ||\mu_{\equtext{real}} - \mu_{\equtext{generated}}||^2 + Tr(\Sigma_{\equtext{real}} + \Sigma_{\equtext{generated}}  - (\Sigma_{\equtext{real}} \Sigma_{\equtext{generated}})^{1/2})$
-\end{center}
+\textbf{InceptionV3}, réseau de neurones à convolution entraîné sut ImageNet est utilisé pour extraire des motifs de l'image.\\
+Comparaison des statistiques de sorti l'avant-dernière couche du réseau.%
+\[X_{\equtext{real}}=\mathcal{N}(\mu_{\equtext{real}}, \Sigma_{\equtext{real}}), X_{\equtext{generated}}=\mathcal{N}(\mu_{\equtext{generated}}, \Sigma_{\equtext{generated}})\]
+\[FID = ||\mu_{\equtext{real}} - \mu_{\equtext{generated}}||^2 + Tr(\Sigma_{\equtext{real}} + \Sigma_{\equtext{generated}}  - (\Sigma_{\equtext{real}} \Sigma_{\equtext{generated}})^{1/2})\]
 \end{tcolorbox}
 \bigskip
 
@@ -219,13 +219,17 @@ $FID = ||\mu_{\equtext{real}} - \mu_{\equtext{generated}}||^2 + Tr(\Sigma_{\equt
 \begin{minipage}{0.2\textwidth}
     \includegraphics[width=1.0\textwidth]{./iter=100000.png}
     \centeredmark{e}
-\end{minipage}
+\end{minipage}%
+\begin{center}
 \begin{tikzpicture}[remember picture]
-    \node (image) at (0,0) {\includegraphics[width=1.0\textwidth]{./fid_per_iterations.png}};
-    % \draw[red,ultra thick,rounded corners] (-5,-5) rectangle (5,5);
-    % \draw[help lines,xstep=1.0,ystep=1.0] (-15,-15) grid (15,15);
-    \foreach \i/\j in {(-9.9,4)/a, (-3, -3)/b, (3.5, -3)/c, (10, -7)/d, (16.5, 8)/e} \draw [red,->, line width=5pt] ({pic cs:\j}) -- \i;
+    \node (image) at (0,0) {\includegraphics[width=0.9\textwidth]{./fid_per_iterations.png}};
+    %\draw[help lines,xstep=1.0,ystep=1.0] (-15,-15) grid (15,15);
+    \foreach \i/\j in {(-8.8,3.8)/a, (-2.8, -3)/b, (3, -2.5)/c, (9, -6)/d, (15, 7.5)/e} \draw [red,->, line width=5pt] ({pic cs:\j}) -- \i;
 \end{tikzpicture}
+\end{center}
+\begin{center}
+\captionof{figure}{FID au cour des itérations avec profils correspondants}
+\end{center}
 \end{tcolorbox}
 \bigskip
 
@@ -238,7 +242,7 @@ Les signaux générés ne sont pas de très bonne qualité.\\
 \textbf{Améliorations}
 \begin{itemize}
     \item \textit{Parameters tunning}
-    \item GANs \textit{image-to-image}, tel que \textbf{CycleGAN}, à partir de profils micro-Doppler simulés. Permettrait de générer des profils de drones non présent dans la base de donnée.
+    \item GANs \textit{image-to-image}, tel que \textbf{CycleGAN}, à partir de profils micro-Doppler simulés permettant de générer des profils de drones absents de la base de donnée.
     \item GANs plus avancés (par exemple \textbf{StyleGAN})
 \end{itemize}
 \end{tcolorbox}
